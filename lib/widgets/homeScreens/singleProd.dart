@@ -51,11 +51,7 @@ class SingleProd extends StatelessWidget {
           ),
           trailing: IconButton(
             onPressed: () {
-              try {
-                cart.addToCart(item.id, item.title, item.price);
-              } catch (e) {
-                print(e.toString());
-              }
+              cart.addToCart(item.id, item.title, item.price);
             },
             icon: Icon(Icons.add_shopping_cart_outlined),
           ),

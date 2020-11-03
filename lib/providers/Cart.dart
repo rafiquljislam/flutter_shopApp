@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
 class Cart {
-  final String id;
   final String prodId;
   final double price;
   final String title;
@@ -9,7 +8,6 @@ class Cart {
   final int quantity;
 
   Cart({
-    this.id,
     this.prodId,
     this.price,
     this.title,
@@ -19,88 +17,81 @@ class Cart {
 }
 
 class Cartdata with ChangeNotifier {
-  List<Cart> _carts = [
-    Cart(
-      id: 'cart1',
+  Map<String, Cart> _carts = {
+    'cart1': Cart(
       prodId: 'p1',
       price: 29.99,
       title: 'Men Drees 1',
       quantity: 4,
     ),
-    Cart(
-      id: 'cart2',
+    'cart2': Cart(
       prodId: 'p2',
       price: 29.99,
       title: 'Men Drees 2',
       quantity: 5,
     ),
-  ];
+  };
 
-  List<Cart> get cart {
-    return [..._carts];
+  Map<String, Cart> get cart {
+    return {..._carts};
   }
 
   double get total {
     double _total = 0.0;
-    _carts.forEach((element) {
-      _total += element.price * element.quantity;
+    _carts.forEach((key, value) {
+      _total += value.price * value.quantity;
     });
     return _total;
   }
 
-  void removeSingleQuanty(String cartid) {
-    var singlecart = _carts.firstWhere((element) => element.id == cartid);
-    var index = _carts.indexWhere((element) => element.id == cartid);
-    if (singlecart.quantity > 1) {
-      _carts[index] = Cart(
-        id: cartid,
-        prodId: singlecart.prodId,
-        title: singlecart.title,
-        price: singlecart.price,
-        dateTime: singlecart.dateTime,
-        quantity: singlecart.quantity - 1,
+  void addToCart(String cartid, String title, double price) {
+    if (_carts.containsKey(cartid)) {
+      _carts.update(
+        cartid,
+        (value) => Cart(
+          prodId: value.prodId,
+          title: value.title,
+          dateTime: value.dateTime,
+          price: value.price,
+          quantity: value.quantity + 1,
+        ),
       );
     } else {
-      _carts.removeWhere((element) => element.id == cartid);
-    }
-    notifyListeners();
-  }
-
-  void addToCart(String prodid, String title, double price) {
-    var data;
-    try {
-      data = _carts.firstWhere((element) => element.id == prodid);
-    } catch (e) {
-      print(e.toString());
-    }
-    var index = _carts.indexWhere((element) => element.id == prodid);
-    if (data != null) {
-      Cart caffff = Cart(
-        id: data.id,
-        prodId: prodid,
-        dateTime: data.dateTime,
-        price: data.price,
-        title: data.title,
-        quantity: data.quantity + 1,
-      );
-      _carts[index] = caffff;
-    } else if (data == null) {
-      _carts.add(
-        Cart(
-          id: prodid,
-          prodId: prodid,
+      _carts.putIfAbsent(
+        cartid,
+        () => Cart(
+          prodId: DateTime.now().toString(),
           title: title,
           price: price,
-          quantity: 1,
           dateTime: DateTime.now(),
+          quantity: 1,
         ),
       );
     }
     notifyListeners();
   }
 
+  void removeSingleItem(String cartid) {
+    var ffff = _carts.entries.firstWhere((element) => element.key == cartid);
+    if (ffff.value.quantity > 1) {
+      _carts.update(
+        cartid,
+        (value) => Cart(
+          prodId: value.prodId,
+          dateTime: value.dateTime,
+          price: value.price,
+          title: value.title,
+          quantity: value.quantity - 1,
+        ),
+      );
+    } else {
+      _carts.remove(cartid);
+    }
+    notifyListeners();
+  }
+
   void clear() {
-    _carts = [];
+    _carts = {};
     notifyListeners();
   }
 }

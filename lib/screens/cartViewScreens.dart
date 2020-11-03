@@ -95,7 +95,7 @@ class CartViewScreens extends StatelessWidget {
                   child: Row(
                     children: [
                       Text(
-                        cart.cart[i - 1].title,
+                        cart.cart.values.toList()[i - 1].title,
                         style: TextStyle(
                           fontWeight: FontWeight.w600,
                           fontSize: 18,
@@ -103,7 +103,7 @@ class CartViewScreens extends StatelessWidget {
                       ),
                       SizedBox(width: 20),
                       Text(
-                        "\$ ${cart.cart[i - 1].price}",
+                        "\$ ${cart.cart.values.toList()[i - 1].price}",
                         style: TextStyle(
                           fontWeight: FontWeight.w600,
                           fontSize: 18,
@@ -112,7 +112,9 @@ class CartViewScreens extends StatelessWidget {
                       Spacer(),
                       GestureDetector(
                         onTap: () {
-                          cart.removeSingleQuanty("${cart.cart[i - 1].id}");
+                          // cart.removeSingleQuanty("${cart.cart[i - 1].id}");
+                          cart.removeSingleItem(
+                              "${cart.cart.keys.toList()[i - 1]}");
                         },
                         child: Container(
                           alignment: Alignment.topCenter,
@@ -134,7 +136,7 @@ class CartViewScreens extends StatelessWidget {
                       ),
                       SizedBox(width: 10),
                       Text(
-                        "${cart.cart[i - 1].quantity} X",
+                        "${cart.cart.values.toList()[i - 1].quantity} X",
                         style: TextStyle(
                           fontWeight: FontWeight.w600,
                           fontSize: 18,
@@ -144,9 +146,9 @@ class CartViewScreens extends StatelessWidget {
                       GestureDetector(
                         onTap: () {
                           cart.addToCart(
-                            "${cart.cart[i - 1].id}",
-                            "${cart.cart[i - 1].title}",
-                            cart.cart[i - 1].price,
+                            "${cart.cart.keys.toList()[i - 1]}",
+                            "${cart.cart.values.toList()[i - 1].title}",
+                            cart.cart.values.toList()[i - 1].price,
                           );
                         },
                         child: Container(
