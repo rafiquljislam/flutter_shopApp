@@ -10,8 +10,18 @@ class SingleProd extends StatelessWidget {
     final item = Provider.of<Product>(context, listen: false);
     final cart = Provider.of<Cartdata>(context, listen: false);
     return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black12,
+            blurRadius: 10.0,
+            offset: Offset(2, 0),
+          )
+        ],
+        color: Colors.white,
+      ),
       margin: EdgeInsets.only(right: 15),
-      color: Colors.white,
       width: 200,
       child: GridTile(
         header: GridTileBar(

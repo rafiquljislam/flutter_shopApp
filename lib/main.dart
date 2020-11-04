@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shopapp/providers/Cart.dart';
+import 'package:shopapp/providers/Profile.dart';
+import 'package:shopapp/providers/order.dart';
 import 'package:shopapp/providers/products.dart';
 import 'package:shopapp/screens/HomeScreens.dart';
+import 'package:shopapp/screens/ProfileScreens.dart';
 import 'package:shopapp/screens/cartViewScreens.dart';
+import 'package:shopapp/screens/orderViewScreens.dart';
 import 'package:shopapp/screens/productDetailsScreens.dart';
 import 'package:shopapp/widgets/homeScreens/allProductsView.dart';
 
@@ -16,6 +20,8 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (ctx) => Products()),
         ChangeNotifierProvider(create: (ctx) => Cartdata()),
+        ChangeNotifierProvider(create: (ctx) => ProfileData()),
+        ChangeNotifierProvider(create: (ctx) => OrderData()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -28,6 +34,9 @@ class MyApp extends StatelessWidget {
           AllProductsView.routeName: (ctx) => AllProductsView(),
           ProductDetailsScreens.routeName: (ctx) => ProductDetailsScreens(),
           CartViewScreens.routeName: (ctx) => CartViewScreens(),
+          OrderViewscreens.routeName: (ctx) => OrderViewscreens(),
+          ProfileScreens.routeName: (ctx) => ProfileScreens(),
+          HomeScreens.routeName: (ctx) => HomeScreens(),
         },
       ),
     );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shopapp/providers/products.dart';
+import 'package:shopapp/widgets/drowerPage.dart';
 import 'package:shopapp/widgets/homeScreens/singleCategory.dart';
 
 class ProductDetailsScreens extends StatelessWidget {
@@ -13,6 +14,7 @@ class ProductDetailsScreens extends StatelessWidget {
       appBar: AppBar(
         title: Text(item.title),
       ),
+      drawer: DrowerPage(),
       body: ListView(
         children: [
           Image(

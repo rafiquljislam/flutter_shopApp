@@ -8,11 +8,11 @@ class Cart {
   final int quantity;
 
   Cart({
-    this.prodId,
-    this.price,
-    this.title,
-    this.dateTime,
-    this.quantity,
+    @required this.prodId,
+    @required this.price,
+    @required this.title,
+    @required this.dateTime,
+    @required this.quantity,
   });
 }
 
@@ -22,12 +22,14 @@ class Cartdata with ChangeNotifier {
       prodId: 'p1',
       price: 29.99,
       title: 'Men Drees 1',
+      dateTime: DateTime.now(),
       quantity: 4,
     ),
     'cart2': Cart(
       prodId: 'p2',
       price: 29.99,
       title: 'Men Drees 2',
+      dateTime: DateTime.now(),
       quantity: 5,
     ),
   };
@@ -60,7 +62,7 @@ class Cartdata with ChangeNotifier {
       _carts.putIfAbsent(
         cartid,
         () => Cart(
-          prodId: DateTime.now().toString(),
+          prodId: cartid,
           title: title,
           price: price,
           dateTime: DateTime.now(),

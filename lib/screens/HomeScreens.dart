@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shopapp/providers/Cart.dart';
 import 'package:shopapp/screens/cartViewScreens.dart';
+import 'package:shopapp/widgets/drowerPage.dart';
 import 'package:shopapp/widgets/homeScreens/allProductsView.dart';
 
 enum Options {
@@ -10,6 +11,7 @@ enum Options {
 }
 
 class HomeScreens extends StatefulWidget {
+  static const routeName = "/home-screens";
   @override
   _HomeScreensState createState() => _HomeScreensState();
 }
@@ -63,6 +65,7 @@ class _HomeScreensState extends State<HomeScreens> {
           )
         ],
       ),
+      drawer: DrowerPage(),
       body: AllProductsView(_favorit),
     );
   }
