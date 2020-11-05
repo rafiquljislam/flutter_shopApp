@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:shopapp/providers/Profile.dart';
 import 'package:shopapp/screens/HomeScreens.dart';
 import 'package:shopapp/screens/ProfileScreens.dart';
+import 'package:shopapp/screens/addProducts.dart';
 import 'package:shopapp/screens/orderViewScreens.dart';
 
 import 'clipper/DrawerCliper.dart';
@@ -94,6 +95,15 @@ class DrowerPage extends StatelessWidget {
               },
               leading: Text("Orders"),
               title: Icon(Icons.download_sharp),
+            ),
+            Divider(),
+            ListTile(
+              onTap: () {
+                Navigator.of(context)
+                    .pushReplacementNamed(AddProducts.routeName);
+              },
+              leading: Text("Product"),
+              title: Icon(Icons.add_business),
             ),
             Divider(),
             ListTile(

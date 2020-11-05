@@ -303,4 +303,14 @@ class Products with ChangeNotifier {
   Product findById(String id) {
     return _items.firstWhere((prod) => prod.id == id);
   }
+
+  void dlateProduct(String id) {
+    _items.removeWhere((prod) => prod.id == id);
+    notifyListeners();
+  }
+
+  void addProduct(Product product) {
+    _items.insert(0, product);
+    notifyListeners();
+  }
 }

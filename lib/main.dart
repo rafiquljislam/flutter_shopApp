@@ -6,7 +6,9 @@ import 'package:shopapp/providers/order.dart';
 import 'package:shopapp/providers/products.dart';
 import 'package:shopapp/screens/HomeScreens.dart';
 import 'package:shopapp/screens/ProfileScreens.dart';
+import 'package:shopapp/screens/addProducts.dart';
 import 'package:shopapp/screens/cartViewScreens.dart';
+import 'package:shopapp/screens/editProductsScreens.dart';
 import 'package:shopapp/screens/orderViewScreens.dart';
 import 'package:shopapp/screens/productDetailsScreens.dart';
 import 'package:shopapp/widgets/homeScreens/allProductsView.dart';
@@ -37,6 +39,8 @@ class MyApp extends StatelessWidget {
           OrderViewscreens.routeName: (ctx) => OrderViewscreens(),
           ProfileScreens.routeName: (ctx) => ProfileScreens(),
           HomeScreens.routeName: (ctx) => HomeScreens(),
+          AddProducts.routeName: (ctx) => AddProducts(),
+          EditProductScreens.routeName: (ctx) => EditProductScreens(),
         },
       ),
     );
